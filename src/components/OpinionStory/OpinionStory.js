@@ -27,11 +27,8 @@ const Avatar = styled.img`
   border-radius: 50%;
   object-fit: cover;
   float: right;
-  @media ${QUERIES.tabletAndUp} {
+  @media ${QUERIES.tabletOnly} {
     float: unset;
-  }
-  @media ${QUERIES.laptopAndUp} {
-    float: right;
   }
 `;
 

@@ -2,6 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 
 import { MAIN_STORY, OPINION_STORIES, SECONDARY_STORIES } from "../../data";
+import { QUERIES } from "../../constants";
 
 import SectionTitle from "../SectionTitle";
 import MainStory from "../MainStory";
@@ -26,11 +27,11 @@ const MainStoryGrid = () => {
 
       <OpinionSection>
         <SectionTitle>Opinion</SectionTitle>
-        <StoryList>
+        <OpinionList>
           {OPINION_STORIES.map((story, index) => (
             <OpinionStory key={story.id} {...story} />
           ))}
-        </StoryList>
+        </OpinionList>
       </OpinionSection>
 
       <AdvertisementSection>
@@ -49,6 +50,13 @@ const Wrapper = styled.div`
     "advertisement";
   gap: 48px;
   margin-bottom: 48px;
+
+  @media ${QUERIES.tabletOnly} {
+    grid-template-areas:
+      "main-story secondary-stories"
+      "opinion-stories opinion-stories"
+      "advertisement advertisement";
+  }
 `;
 
 const MainStorySection = styled.section`
@@ -63,6 +71,11 @@ const StoryList = styled.div`
   display: flex;
   flex-direction: column;
 
+  @media ${QUERIES.tabletOnly} {
+    border-left: 2px solid var(--color-gray-300);
+    padding-left: 16px;
+  }
+
   > *:not(:first-child) {
     margin-top: 16px;
     border-top: 2px solid var(--color-gray-300);
@@ -72,6 +85,28 @@ const StoryList = styled.div`
 
 const OpinionSection = styled.section`
   grid-area: opinion-stories;
+`;
+
+const OpinionList = styled.div`
+  display: flex;
+  flex-direction: column;
+
+  > *:not(:first-child) {
+    margin-top: 16px;
+    border-top: 2px solid var(--color-gray-300);
+    padding-top: 16px;
+  }
+
+  @media ${QUERIES.tabletOnly} {
+    flex-direction: row;
+    gap: 16px;
+
+    > *:not(:first-child) {
+      margin-top: 0;
+      border-top: 0px;
+      padding-top: 0;
+    }
+  }
 `;
 
 const AdvertisementSection = styled.section`
